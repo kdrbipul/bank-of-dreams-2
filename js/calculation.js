@@ -10,44 +10,32 @@ const withdrawField=document.getElementById('withdraw-field');
 //  console.log(depositAmount,withdrawAmount,balanceAm 
 
 
-depositBtn.addEventListener('click',function(){
-    // console.log("clicked ");
-    const depositFieldValue=depositField.value;
-    // console.log(typeof depositFieldValue);
-    const depositConvertAmount=parseFloat(depositFieldValue);
-    // console.log(depositConvertAmount);
-    // console.log(typeof depositConvertAmount);
-    const previousDeposit=depositAmount.innerText;
-    const previousBalance=balanceAmount.innerText;
-    const previousBalanceConvert=parseFloat(previousBalance);
-    // console.log(previousDeposit);
-    const previousDepositConvert=parseFloat(previousDeposit);
-    // console.log(typeof previousDepositConvert);
-    // console.log(depositConvertAmount,previousDepositConvert);
-    const totalDeposit=previousDepositConvert+depositConvertAmount;
-    const totalBalance=depositConvertAmount+previousBalanceConvert;
-    // console.log(totalDeposit);
-    depositAmount.innerText=totalDeposit;
-    balanceAmount.innerText=totalBalance;
-    depositField.value="";
-});
+depositBtn.addEventListener('click', function(){
+    // Input Field
+    const depositInput=document.getElementById('deposit-field');
+    const depositInputValue=depositInput.value;
+    const depositAmount=parseFloat(depositInputValue);
 
-withdrawBtn.addEventListener('click', function(){
-    const withdrawFieldValue=withdrawField.value;
-    // console.log(withdrawFieldValue);
-    const withdrawConvertAmount=parseFloat(withdrawFieldValue);
-    // console.log(withdrawConvertAmount);
-    const previousWithdraw=withdrawAmount.innerText;
-    const currentBalance=balanceAmount.innerText;
-    // console.log(previousWithdraw);
-    const  previousWithdrawConvert=parseFloat(previousWithdraw);
-    const currentBalanceConvert=parseFloat(currentBalance);
-    // console.log(previousWithdrawConvert);
-    const totalWithdraw=previousWithdrawConvert-withdrawConvertAmount;
-    const totalBalance=withdrawConvertAmount-currentBalanceConvert;
-    // console.log(totalWithdraw);
-    withdrawAmount.innerText=totalWithdraw;
-    balanceAmount.innerText=totalBalance;
-    withdrawField.value="";
-    // withdrawAmount.innerText="";
+    // Previous  Deposit Value
+    const depositTotal=document.getElementById('deposit-amount');
+    const depositValue=depositTotal.innerText;
+    const depositPreviousAmount=parseFloat(depositValue);
+
+    // Update new balance
+    const totalBalance=document.getElementById('balance-amount');
+    const totalBalanceValue=totalBalance.innerText;
+    const totalBalanceAmount=parseFloat(totalBalanceValue);
+    // console.log(depositAmount,depositPreviousAmount,totalBalance );
+
+
+    // New Balance
+    const newBalance=totalBalanceAmount+depositAmount;
+    const newDeposit=depositPreviousAmount+depositAmount;
+
+    depositTotal.innerText=newDeposit;
+    totalBalance.innerText=newBalance;
+
+    // Clear
+    depositInput.value="";
+
 });
